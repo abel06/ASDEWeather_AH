@@ -1,13 +1,16 @@
 package it.unical.asde.weather.user;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class User {
 	private String name;
 	private String email;
 	private String password;
 	private String Home_City;
-	//private ArrayList<String,String> preffered_city_list;
+	
+    private List<String> preferred_cities ;
 	 public User() {
 		 
 	 }

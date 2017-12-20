@@ -53,7 +53,9 @@ public class HomeController {
 	
 	@RequestMapping("/register")
 	public ResponseEntity<String> register(@RequestParam String data) {
+		
 		System.out.println("in controller");
+		System.out.println(data);
 		String returnJson = "{\"id\":\"1\",\"name\":\"ciccio\", \"email\":\"ciccio@gmail.com\", \"password\":\"chicco\", \"city\":\"Cosenza\", \"country\":\"Italy\"}";
 
 		Map<String, Object> map = gson.fromJson(data, new TypeToken<Map<String,Object>>(){}.getType());

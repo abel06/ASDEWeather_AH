@@ -441,35 +441,37 @@ pageEncoding="ISO-8859-1"%>
 		          <span aria-hidden="true">&times;</span>
 		        </button>
 		      </div>
+		     
 		      <div class="modal-body">
 		      			<div class="alert alert-danger" id="error-form">
   							<strong>Danger!</strong>Please Complete the form!
 						</div>
 		      			<br />		       			
-						<label>Name:</label><input type="text" class="form-control" id="reg-name" name="reg-n-name" placeholder="Name" required>
-						<label>Last Name:</label><input type="text" class="form-control" id="reg-lastname" name="reg-n-lastname" placeholder="Last Name" required>
-						<label>Email:</label><input type="email" class="form-control" id="reg-email" name="reg-n-email" placeholder="username@domain.com" required>
-						<label>Password:</label><input type="password" class="form-control" id="reg-password" name="reg-n-password" placeholder="********" required>
-						<label>Re-Password:</label><input type="password" class="form-control" id="reg-re-password" name="reg-n-re-password" placeholder="********" required>
+						<label>Name:</label><input ng-model="user.name" type="text" class="form-control" id="reg-name" name="reg-n-name" placeholder="Name" required>
+						<label>Last Name:</label><input  ng-model="user.lastname" type="text" class="form-control" id="reg-lastname" name="reg-n-lastname" placeholder="Last Name" required>
+						<label>Email:</label><input ng-model="user.email" type="email" class="form-control" id="reg-email" name="reg-n-email" placeholder="username@domain.com" required>
+						<label>Password:</label><input ng-model="user.password" type="password" class="form-control" id="reg-password" name="reg-n-password" placeholder="********" required>
+						<label>Re-Password:</label><input  type="password" class="form-control" id="reg-re-password" name="reg-n-re-password" placeholder="********" required>
 						<label>Country:</label>
-						<select class="form-control" id="reg-country" name="reg-n-country">
+						<select class="form-control" ng-model="user.country" id="reg-country" name="reg-n-country">
 												
 											</select>
 						
-						<label>City:</label><input type="text" class="form-control" id="reg-city" name="reg-n-city" placeholder="City" required>
-						
+						<label>City:</label><input ng-model="user.city" type="text" class="form-control" id="reg-city" name="reg-n-city" placeholder="City" required>
+					 	
 					
-		      </div>
+		     </div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-		        <button type="button" class="btn btn-primary" id="register" >Register</button>
+		        
+		        <button type="button" class="btn btn-primary" id="register" ng-click="register(user)">Register</button>
 		      </div>
 		    </div>
 		  </div>
 		</div>		
 		<!--  END Modal Register -->
 		
-		<!--  JQeury UI -->
+		<!--  JQeury UI -->this.
 		<script src="https://code.jquery.com/jquery-3.1.1.js" ></script>
 	<script
   src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
