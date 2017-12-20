@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -20,8 +21,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 
+import it.unical.asde.weather.user.User;
 import it.unical.asde.weather.utility.JsonReader;
 
 @Controller
@@ -29,6 +32,9 @@ public class HomeController {
 
 	String message = "Well come to Spring MCV";
 	private Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+	
+	
+	private User user;
 	
 	@RequestMapping("/")
 	public String showIndex() {
@@ -55,7 +61,14 @@ public class HomeController {
 	public ResponseEntity<String> register(@RequestParam String data) {
 		
 		System.out.println("in controller");
-		System.out.println(data);
+		
+		
+		JSONObject jsonObj = new JSONObject(data);
+		
+		user =new User();
+		user.setName(jsonObj.getString("name"));
+		System.out.println("USER "+user.getName());
+		
 		String returnJson = "{\"id\":\"1\",\"name\":\"ciccio\", \"email\":\"ciccio@gmail.com\", \"password\":\"chicco\", \"city\":\"Cosenza\", \"country\":\"Italy\"}";
 
 		Map<String, Object> map = gson.fromJson(data, new TypeToken<Map<String,Object>>(){}.getType());
