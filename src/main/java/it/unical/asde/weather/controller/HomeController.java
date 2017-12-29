@@ -25,7 +25,9 @@ import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 
 import it.unical.asde.weather.user.User;
+import it.unical.asde.weather.utility.ApiDecoder;
 import it.unical.asde.weather.utility.JsonReader;
+import it.unical.asde.weather.utility.ServerInfo;
 
 @Controller
 public class HomeController {
@@ -90,17 +92,33 @@ public class HomeController {
 		cities.add("Addis Ababa");
 		
 		JsonReader jr = new JsonReader();
-	    JSONObject json;
+	    JSONObject json= new JSONObject();
 	    
 		try {
-			ArrayList<Map<String,Object>> forcastWeek = new ArrayList<Map<String,Object>>();
+			/*ArrayList<Map<String,Object>> forcastWeek = new ArrayList<Map<String,Object>>();
 			
 			for(String city:cities){
-				json = jr.readJsonFromUrl("http://api.openweathermap.org/data/2.5/forecast?q="+city+"&appid=f803237aaa82cface910b58b8a93942b");
+				json = jr.readJsonFromUrl("http://api.openweathermap.org/data/2.5/forecast?q="+city+"&appid=f803237aaa82cface910b58b8a93942b&units=metric");
 				Map<String, Object> map = gson.fromJson(json.toString(), new TypeToken<Map<String,Object>>(){}.getType());
-				forcastWeek.add(map);
+				forcastWeek.add(map);*/
+			
+			ArrayList<Map<String,Object>> forcastWeek = new ArrayList<Map<String,Object>>();
+            
+            for(String city:cities){
+                json = jr.readJsonFromUrl(ServerInfo.API_URL+city+"&appid="+ServerInfo.API_KEY+"&units=metric");
+                Map<String, Object> map = gson.fromJson(json.toString(), new TypeToken<Map<String,Object>>(){}.getType());
+                forcastWeek.add(map);
+                
+            }
+            
+            
+            ApiDecoder ad= new ApiDecoder(json.toString());
+            
+            
+            //System.out.println(gson.toJson(forcastWeek));
+            returnJson = "{\"status\":\"done\", \"data\":"+gson.toJson(forcastWeek)+"}";
 				
-			}
+			
 			
 			
 			System.out.println(gson.toJson(forcastWeek));

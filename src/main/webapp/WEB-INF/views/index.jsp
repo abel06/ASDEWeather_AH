@@ -132,27 +132,46 @@
 		<div class="row">
 			<div ng-repeat="w in weatherData track by $index"
 				class="col-md-4 col-sm-6 portfolio-item">
-				<a class="portfolio-link" data-toggle="modal"
-					href="#portfolioModal1">
+				<!--  -->
+
+				<div class="card">
+					<div class="card-header deep-orange lighten-1 white-text" >
+						{{w.name}}</div>
+					<div class="card-body">
+						<img src="{{w.icon}}" />
+						<h4 class="card-title">{{w.description}}</h4>
+						<p class="card-text">Maxumum Temprature:{{w.temp}} &deg C<br /> Minimum
+							Temparature:{{w.minTemp}}  &deg C<br /> Humidity:{{w.humidity}}<br />.</p>
+						<aclass="btn btn-primary" ng-click="displayWeatherDetail(w.name)">Detail</a>
+					</div>
+				</div>
+
+
+
+
+				<!--  -->
+				<!-- <a class="portfolio-link" href="" ng-click="displayWeatherDetail(w.name)" >
 					<div class="">
 						<div class="portfolio-hover-content">
 							<i class="fa fa-plus fa-3x" style="color: #22222"></i>
 						</div>
 						<div>
-							Maxumum Temprature:{{w.maxTemp}}<br /> Minimum
+							Maxumum Temprature:{{w.maxTemp}}<br /> Minimuma
 							Temparature:{{w.minTemp}}<br /> Humidity:{{w.humidity}}<br />
 						</div>
 					</div> <img class="img-fluid" src="https://source.unsplash.com/"
 					+{{w.name}}+",weather" alt="">
 				</a>
 				<div class="portfolio-caption">
-					<h4>Threads</h4>
-					<p class="text-muted">{{w.name}}</p>
+					<button class="btn btn-primary" ng-click="displayWeatherDetail(w.name)">Detai</button>
+					<h4>{{w.name}}</h4>
+					<p class="text-muted">{{w.id}}</p> -->
 				</div>
 			</div>
 
 
 		</div>
+	</div>
 	</section>
 
 	<!-- Other cities -->
@@ -374,7 +393,7 @@
 
 	<!-- Modal 1 -->
 	<div class="portfolio-modal modal fade" id="portfolioModal1"
-		tabindex="-1" role="dialog" aria-hidden="true">
+		tabindex="-1" role="dialog" aria-hidden="true" ng-controller="WeatherController">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="close-modal" data-dismiss="modal">
@@ -387,16 +406,21 @@
 						<div class="col-lg-8 mx-auto">
 							<div class="modal-body">
 								<!-- Project Details Go Here -->
-								<h2 class="text-uppercase">Project Name</h2>
+								<h2 class="text-uppercase" ng-model="cityName">Project Name</h2>
 								<p class="item-intro text-muted">Lorem ipsum dolor sit amet
 									consectetur.</p>
 								<img class="img-fluid d-block mx-auto"
 									src="resources/img/portfolio/01-full.jpg" alt="">
-								<p>Use this area to describe your project. Lorem ipsum dolor
-									sit amet, consectetur adipisicing elit. Est blanditiis dolorem
-									culpa incidunt minus dignissimos deserunt repellat aperiam
-									quasi sunt officia expedita beatae cupiditate, maiores
-									repudiandae, nostrum, reiciendis facere nemo!</p>
+							<div id="openweathermap-widget-11"></div>
+									<pre>
+									
+									
+									
+									
+									
+									
+									
+									</pre>
 								<ul class="list-inline">
 									<li>Date: January 2017</li>
 									<li>Client: Threads</li>
@@ -507,7 +531,8 @@
 		integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
 		crossorigin="anonymous"></script>
 
-
+	<!-- Charts JS -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.js"></script>
 	<!-- Bootstrap core JavaScript -->
 
 	<script
